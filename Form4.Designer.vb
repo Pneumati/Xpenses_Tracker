@@ -23,9 +23,9 @@ Partial Class Form4
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(Form4))
-        Dim ChartArea2 As DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
-        Dim Legend2 As DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
-        Dim Series2 As DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
+        Dim ChartArea1 As DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend1 As DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series1 As DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
         Panel1 = New Panel()
         LinkLabel3 = New LinkLabel()
         LinkLabel6 = New LinkLabel()
@@ -57,10 +57,10 @@ Partial Class Form4
         Label11 = New Label()
         Panel2 = New Panel()
         Label12 = New Label()
-        Label2 = New Label()
+        HighIncome = New Label()
         Panel4 = New Panel()
         Label13 = New Label()
-        Label14 = New Label()
+        HighExp = New Label()
         Chart1 = New DataVisualization.Charting.Chart()
         Panel1.SuspendLayout()
         CType(PictureBox9, ComponentModel.ISupportInitialize).BeginInit()
@@ -450,7 +450,7 @@ Partial Class Form4
         ' Panel2
         ' 
         Panel2.Controls.Add(Label12)
-        Panel2.Controls.Add(Label2)
+        Panel2.Controls.Add(HighIncome)
         Panel2.Location = New Point(199, 546)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(190, 104)
@@ -468,22 +468,22 @@ Partial Class Form4
         Label12.TabIndex = 4
         Label12.Text = "Highest Income Category"
         ' 
-        ' Label2
+        ' HighIncome
         ' 
-        Label2.AutoSize = True
-        Label2.BackColor = Color.Navy
-        Label2.Font = New Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Label2.ForeColor = Color.Black
-        Label2.Location = New Point(3, 50)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(138, 13)
-        Label2.TabIndex = 3
-        Label2.Text = "Highest Income Category"
+        HighIncome.AutoSize = True
+        HighIncome.BackColor = Color.Navy
+        HighIncome.Font = New Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point)
+        HighIncome.ForeColor = Color.Turquoise
+        HighIncome.Location = New Point(3, 50)
+        HighIncome.Name = "HighIncome"
+        HighIncome.Size = New Size(138, 13)
+        HighIncome.TabIndex = 3
+        HighIncome.Text = "Highest Income Category"
         ' 
         ' Panel4
         ' 
         Panel4.Controls.Add(Label13)
-        Panel4.Controls.Add(Label14)
+        Panel4.Controls.Add(HighExp)
         Panel4.Location = New Point(413, 546)
         Panel4.Name = "Panel4"
         Panel4.Size = New Size(200, 104)
@@ -501,30 +501,30 @@ Partial Class Form4
         Label13.TabIndex = 4
         Label13.Text = "Highest Expense Category"
         ' 
-        ' Label14
+        ' HighExp
         ' 
-        Label14.AutoSize = True
-        Label14.BackColor = Color.Navy
-        Label14.Font = New Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Label14.ForeColor = Color.Black
-        Label14.Location = New Point(3, 50)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(138, 13)
-        Label14.TabIndex = 3
-        Label14.Text = "Highest Income Category"
+        HighExp.AutoSize = True
+        HighExp.BackColor = Color.Navy
+        HighExp.Font = New Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point)
+        HighExp.ForeColor = Color.Turquoise
+        HighExp.Location = New Point(3, 50)
+        HighExp.Name = "HighExp"
+        HighExp.Size = New Size(138, 13)
+        HighExp.TabIndex = 3
+        HighExp.Text = "Highest Income Category"
         ' 
         ' Chart1
         ' 
-        ChartArea2.Name = "ChartArea1"
-        Chart1.ChartAreas.Add(ChartArea2)
-        Legend2.Name = "Legend1"
-        Chart1.Legends.Add(Legend2)
+        ChartArea1.Name = "ChartArea1"
+        Chart1.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        Chart1.Legends.Add(Legend1)
         Chart1.Location = New Point(738, 43)
         Chart1.Name = "Chart1"
-        Series2.ChartArea = "ChartArea1"
-        Series2.Legend = "Legend1"
-        Series2.Name = "Series1"
-        Chart1.Series.Add(Series2)
+        Series1.ChartArea = "ChartArea1"
+        Series1.Legend = "Legend1"
+        Series1.Name = "Series1"
+        Chart1.Series.Add(Series1)
         Chart1.Size = New Size(620, 300)
         Chart1.TabIndex = 11
         Chart1.Text = "Chart1"
@@ -596,7 +596,7 @@ Partial Class Form4
     Friend WithEvents Label10 As Label
     Friend WithEvents Label11 As Label
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Label2 As Label
+    Friend WithEvents HighIncome As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Label13 As Label
@@ -605,4 +605,5 @@ Partial Class Form4
     Friend WithEvents PictureBox9 As PictureBox
     Friend WithEvents Chart1 As DataVisualization.Charting.Chart
     Friend WithEvents LinkLabel3 As LinkLabel
+    Friend WithEvents HighExp As Label
 End Class

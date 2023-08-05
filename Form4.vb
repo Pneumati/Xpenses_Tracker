@@ -1,5 +1,6 @@
 ﻿
 Imports System.Collections.ObjectModel
+Imports System.Data.Common
 Imports System.Data.SqlClient
 
 Public Class Form4
@@ -137,5 +138,47 @@ Public Class Form4
 
     Private Sub Label7_Click(sender As Object, e As EventArgs) Handles IncLastDate.Click
 
+    End Sub
+
+    Private Sub IncGraph(sender As Object, e As EventArgs)
+        Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
+    End Sub
+
+    Private Sub HighIncCat(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
+        Dim query As String = "SELECT MAX(IncCat) AS TotalExpense FROM INCOME"
+        Using connection As New SqlConnection(connectionString)
+            Dim adapter As New SqlDataAdapter(query, connection)
+            Dim incoTable As New DataTable()
+            Try
+                connection.Open()
+                adapter.Fill(incoTable)
+                connection.Close()
+            Catch ex As Exception
+                MessageBox.Show("Error while fetching data: " & ex.Message)
+            End Try
+            If incoTable.Rows.Count > 0 Then
+                HighIncome.Text = incoTable.Rows(0)("TotalExpense").ToString
+            End If
+        End Using
+    End Sub
+
+    Private Sub HighExpCat(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
+        Dim query As String = "SELECT MAX(ExpCat) AS HighExpense FROM EXPENSE"
+        Using connection As New SqlConnection(connectionString)
+            Dim adapter As New SqlDataAdapter(query, connection)
+            Dim expTable As New DataTable()
+            Try
+                connection.Open()
+                adapter.Fill(expTable)
+                connection.Close()
+            Catch ex As Exception
+                MessageBox.Show("Error while fetching data: " & ex.Message)
+            End Try
+            If expTable.Rows.Count > 0 Then
+                HighExp.Text = expTable.Rows(0)("HighExpense").ToString
+            End If
+        End Using
     End Sub
 End Class

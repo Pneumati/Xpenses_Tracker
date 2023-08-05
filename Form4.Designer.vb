@@ -453,18 +453,18 @@ Partial Class Form4
         Panel2.Controls.Add(Label2)
         Panel2.Location = New Point(199, 546)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(174, 104)
+        Panel2.Size = New Size(190, 104)
         Panel2.TabIndex = 9
         ' 
         ' Label12
         ' 
         Label12.AutoSize = True
         Label12.BackColor = Color.Navy
-        Label12.Font = New Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label12.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         Label12.ForeColor = Color.White
-        Label12.Location = New Point(3, 50)
+        Label12.Location = New Point(3, 11)
         Label12.Name = "Label12"
-        Label12.Size = New Size(138, 13)
+        Label12.Size = New Size(165, 17)
         Label12.TabIndex = 4
         Label12.Text = "Highest Income Category"
         ' 
@@ -474,7 +474,7 @@ Partial Class Form4
         Label2.BackColor = Color.Navy
         Label2.Font = New Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point)
         Label2.ForeColor = Color.Black
-        Label2.Location = New Point(3, 11)
+        Label2.Location = New Point(3, 50)
         Label2.Name = "Label2"
         Label2.Size = New Size(138, 13)
         Label2.TabIndex = 3
@@ -484,22 +484,22 @@ Partial Class Form4
         ' 
         Panel4.Controls.Add(Label13)
         Panel4.Controls.Add(Label14)
-        Panel4.Location = New Point(395, 546)
+        Panel4.Location = New Point(413, 546)
         Panel4.Name = "Panel4"
-        Panel4.Size = New Size(174, 104)
+        Panel4.Size = New Size(200, 104)
         Panel4.TabIndex = 10
         ' 
         ' Label13
         ' 
         Label13.AutoSize = True
         Label13.BackColor = Color.Navy
-        Label13.Font = New Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point)
+        Label13.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point)
         Label13.ForeColor = Color.White
-        Label13.Location = New Point(3, 50)
+        Label13.Location = New Point(3, 11)
         Label13.Name = "Label13"
-        Label13.Size = New Size(138, 13)
+        Label13.Size = New Size(170, 17)
         Label13.TabIndex = 4
-        Label13.Text = "Highest Income Category"
+        Label13.Text = "Highest Expense Category"
         ' 
         ' Label14
         ' 
@@ -507,7 +507,7 @@ Partial Class Form4
         Label14.BackColor = Color.Navy
         Label14.Font = New Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point)
         Label14.ForeColor = Color.Black
-        Label14.Location = New Point(3, 11)
+        Label14.Location = New Point(3, 50)
         Label14.Name = "Label14"
         Label14.Size = New Size(138, 13)
         Label14.TabIndex = 3

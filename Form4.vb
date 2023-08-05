@@ -35,6 +35,7 @@ Public Class Form4
 
     Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
         Expenses.Show()
+        Me.Close()
 
     End Sub
     Private Sub ExpDate(sender As Object, e As EventArgs) Handles MyBase.Load

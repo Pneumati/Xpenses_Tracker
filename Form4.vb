@@ -37,7 +37,30 @@ Public Class Form4
         Expenses.Show()
 
     End Sub
+    Private Sub ExpDate(sender As Object, e As EventArgs) Handles MyBase.Load
+        ExpenseDate()
+    End Sub
+    Private Sub ExpenseDate()
+        Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
+        Dim query As String = "SELECT MAX(ExpDate) FROM EXPENSE"
+        Using connection As New SqlConnection(connectionString)
+            Dim adapter As New SqlDataAdapter(query, connection)
+            Dim exT As New DataTable
+            Try
+                connection.Open()
+                adapter.Fill(exT)
+                connection.Close()
+            Catch ex As Exception
+                MessageBox.Show("Error while fetching data: " & ex.Message)
+            End Try
+            If exT.Rows.Count > 0 AndAlso exT.Rows(0)(0) IsNot DBNull.Value Then
+                ExpLastDate.Text = Convert.ToDateTime(exT.Rows(0)(0)).ToString("yyyy-MM-dd")
+            Else
+                ExpLastDate.Text = "No records found."
+            End If
+        End Using
 
+    End Sub
     Private Sub IncDate(sender As Object, e As EventArgs) Handles MyBase.Load
         IncomeDate()
     End Sub
@@ -65,7 +88,7 @@ Public Class Form4
     End Sub
 
     ''Dim connection As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
-    Private Sub ExpenseAmt_Load(sender As Object, e As EventArgs)
+    Private Sub ExpenseAmt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetExpense()
     End Sub
 

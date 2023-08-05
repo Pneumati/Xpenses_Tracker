@@ -49,7 +49,7 @@ Partial Class Form4
         Label3 = New Label()
         Expenses = New Label()
         Panel3 = New Panel()
-        Label7 = New Label()
+        IncLastDate = New Label()
         IncDisplay = New Label()
         PictureBox8 = New PictureBox()
         Label9 = New Label()
@@ -366,7 +366,7 @@ Partial Class Form4
         ' Panel3
         ' 
         Panel3.BackColor = Color.Black
-        Panel3.Controls.Add(Label7)
+        Panel3.Controls.Add(IncLastDate)
         Panel3.Controls.Add(IncDisplay)
         Panel3.Controls.Add(PictureBox8)
         Panel3.Controls.Add(Label9)
@@ -377,17 +377,17 @@ Partial Class Form4
         Panel3.Size = New Size(417, 230)
         Panel3.TabIndex = 8
         ' 
-        ' Label7
+        ' IncLastDate
         ' 
-        Label7.AutoSize = True
-        Label7.BackColor = Color.Black
-        Label7.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Label7.ForeColor = Color.Gold
-        Label7.Location = New Point(3, 180)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(40, 20)
-        Label7.TabIndex = 7
-        Label7.Text = "date"
+        IncLastDate.AutoSize = True
+        IncLastDate.BackColor = Color.Black
+        IncLastDate.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        IncLastDate.ForeColor = Color.Gold
+        IncLastDate.Location = New Point(3, 180)
+        IncLastDate.Name = "IncLastDate"
+        IncLastDate.Size = New Size(40, 20)
+        IncLastDate.TabIndex = 7
+        IncLastDate.Text = "date"
         ' 
         ' IncDisplay
         ' 
@@ -589,7 +589,7 @@ Partial Class Form4
     Friend WithEvents Label3 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents Label7 As Label
+    Friend WithEvents IncLastDate As Label
     Friend WithEvents IncDisplay As Label
     Friend WithEvents PictureBox8 As PictureBox
     Friend WithEvents Label9 As Label

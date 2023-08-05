@@ -38,8 +38,34 @@ Public Class Form4
 
     End Sub
 
+    Private Sub IncDate(sender As Object, e As EventArgs) Handles MyBase.Load
+        IncomeDate()
+    End Sub
+
+    Private Sub IncomeDate()
+        Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
+        Dim query As String = "SELECT MAX(IncDate) FROM INCOME"
+        Using connection As New SqlConnection(connectionString)
+            Dim adapter As New SqlDataAdapter(query, connection)
+            Dim inT As New DataTable
+            Try
+                connection.Open()
+                adapter.Fill(inT)
+                connection.Close()
+            Catch ex As Exception
+                MessageBox.Show("Error while fetching data: " & ex.Message)
+            End Try
+            If inT.Rows.Count > 0 AndAlso inT.Rows(0)(0) IsNot DBNull.Value Then
+                IncLastDate.Text = Convert.ToDateTime(inT.Rows(0)(0)).ToString("yyyy-MM-dd")
+            Else
+                IncLastDate.Text = "No records found."
+            End If
+        End Using
+
+    End Sub
+
     ''Dim connection As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
-    Private Sub ExpenseAmt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub ExpenseAmt_Load(sender As Object, e As EventArgs)
         GetExpense()
     End Sub
 
@@ -85,7 +111,7 @@ Public Class Form4
         End Using
     End Sub
 
-    Private Sub Label7_Click(sender As Object, e As EventArgs) Handles Label7.Click
+    Private Sub Label7_Click(sender As Object, e As EventArgs) Handles IncLastDate.Click
 
     End Sub
 End Class

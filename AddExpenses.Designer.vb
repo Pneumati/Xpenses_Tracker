@@ -96,7 +96,7 @@ Partial Class AddExpenses
         ' ExpCategory
         ' 
         ExpCategory.FormattingEnabled = True
-        ExpCategory.Items.AddRange(New Object() {"Food & Groceries", "Travelling", "Utility (Electricity, Water)", "Internet Bundle", "Miscellanious"})
+        ExpCategory.Items.AddRange(New Object() {"Food & Groceries", "Travelling", "Utility (Electricity, Water)", "Internet Bundle", "Miscellanious", "Rent", "Clothing", "Education"})
         ExpCategory.Location = New Point(239, 51)
         ExpCategory.Name = "ExpCategory"
         ExpCategory.Size = New Size(121, 23)

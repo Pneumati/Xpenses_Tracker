@@ -199,16 +199,16 @@ Public Class Form4
 
             ' Create a SqlCommand and execute the query
             Using cmd As New SqlCommand(query, connection)
-                    ' Create a DataTable to hold the data
-                    Dim dataTable As New DataTable()
+                ' Create a DataTable to hold the data
+                Dim dataTable As New DataTable()
 
-                    ' Use a DataAdapter to fill the DataTable
-                    Using adapter As New SqlDataAdapter(cmd)
-                        adapter.Fill(dataTable)
-                    End Using
+                ' Use a DataAdapter to fill the DataTable
+                Using adapter As New SqlDataAdapter(cmd)
+                    adapter.Fill(dataTable)
+                End Using
 
-                    ' Set the data source for your chart
-                    Chart1.DataSource = dataTable
+                ' Set the data source for your chart
+                Chart1.DataSource = dataTable
 
                 ' Set the X and Y values for the chart
                 Chart1.Series(0).XValueMember = "Type" ' Use the alias "Type" from your SQL query
@@ -223,9 +223,9 @@ Public Class Form4
 
                 ' Refresh the chart to display the data
                 Chart1.DataBind()
-                End Using
             End Using
-        End Sub
+        End Using
+    End Sub
 
     Private Sub Chart_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         VisualizeData()

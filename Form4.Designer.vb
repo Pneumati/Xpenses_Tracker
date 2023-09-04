@@ -519,13 +519,13 @@ Partial Class Form4
         Chart1.ChartAreas.Add(ChartArea1)
         Legend1.Name = "Legend1"
         Chart1.Legends.Add(Legend1)
-        Chart1.Location = New Point(738, 43)
+        Chart1.Location = New Point(674, 43)
         Chart1.Name = "Chart1"
         Series1.ChartArea = "ChartArea1"
         Series1.Legend = "Legend1"
         Series1.Name = "Series1"
         Chart1.Series.Add(Series1)
-        Chart1.Size = New Size(620, 300)
+        Chart1.Size = New Size(684, 482)
         Chart1.TabIndex = 11
         Chart1.Text = "Chart1"
         ' 

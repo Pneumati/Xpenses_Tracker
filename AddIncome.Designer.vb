@@ -96,7 +96,7 @@ Partial Class AddIncome
         ' Category
         ' 
         Category.FormattingEnabled = True
-        Category.Items.AddRange(New Object() {"Salary", "Allowances", "Stipend", "Bonuses"})
+        Category.Items.AddRange(New Object() {"Salary", "Allowances", "Investment", "Side Hustle", "Gifts", "Other"})
         Category.Location = New Point(239, 51)
         Category.Name = "Category"
         Category.Size = New Size(121, 23)

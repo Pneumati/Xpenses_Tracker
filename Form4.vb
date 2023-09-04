@@ -40,7 +40,7 @@ Public Class Form4
         Me.Close()
 
     End Sub
-    Private Sub ExpDate(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub ExpDate(sender As Object, e As EventArgs)
         ExpenseDate()
     End Sub
     Private Sub ExpenseDate()
@@ -64,7 +64,7 @@ Public Class Form4
         End Using
 
     End Sub
-    Private Sub IncDate(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub IncDate(sender As Object, e As EventArgs)
         IncomeDate()
     End Sub
 
@@ -91,7 +91,7 @@ Public Class Form4
     End Sub
 
     ''Dim connection As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
-    Private Sub ExpenseAmt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub ExpenseAmt_Load(sender As Object, e As EventArgs)
         GetExpense()
     End Sub
 
@@ -113,7 +113,7 @@ Public Class Form4
             End If
         End Using
     End Sub
-    Private Sub IncomeAmt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub IncomeAmt_Load(sender As Object, e As EventArgs)
         GetIncome()
     End Sub
     Private Sub GetIncome()
@@ -145,7 +145,7 @@ Public Class Form4
         Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
     End Sub
 
-    Private Sub HighIncCat(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub HighIncCat(sender As Object, e As EventArgs)
         Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
         Dim query As String = "SELECT MAX(IncCat) AS TotalExpense FROM INCOME"
         Using connection As New SqlConnection(connectionString)
@@ -164,7 +164,7 @@ Public Class Form4
         End Using
     End Sub
 
-    Private Sub HighExpCat(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub HighExpCat(sender As Object, e As EventArgs)
         Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
         Dim query As String = "SELECT MAX(ExpCat) AS HighExpense FROM EXPENSE"
         Using connection As New SqlConnection(connectionString)
@@ -229,6 +229,50 @@ Public Class Form4
 
     Private Sub Chart_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         VisualizeData()
+    End Sub
+
+    Private Sub VisualizeExpInc()
+        Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
+        Using connection As New SqlConnection(connectionString)
+            connection.Open()
+            Dim query As String = "SELECT DATEPART(MONTH, IncDate) As Month, DATEPART(YEAR, IncDate) As Year, SUM(IncAmt) As TotalIncome " &
+                         "FROM Income " &
+                         "GROUP BY DATEPART(MONTH, IncDate), DATEPART(YEAR, IncDate)"
+            Using cmd As New SqlCommand(query, connection)
+                ' Create a DataTable to hold the data
+                Dim dataTable As New DataTable()
+
+                ' Use a DataAdapter to fill the DataTable
+                Using adapter As New SqlDataAdapter(cmd)
+                    adapter.Fill(dataTable)
+                End Using
+
+                ' Set the data source for your chart
+                Chart2.DataSource = dataTable
+
+                ' Set the X and Y values for the chart
+                Chart2.Series(0).XValueMember = "Month" ' Use an alias "MonthYear" from your SQL query
+                Chart2.Series(0).YValueMembers = "TotalIncome" ' Use an alias "TotalAmount" from your SQL query
+
+                ' Set the chart type to Column (or any suitable chart type)
+                Chart2.Series(0).ChartType = SeriesChartType.Column
+
+                ' Optionally, set chart properties like titles and labels
+                Chart2.Titles.Add("Income Over Time")
+                Chart2.Series(0).XValueType = ChartValueType.String ' Use string as the X value type for month/year labels
+                Chart2.Series(0).IsValueShownAsLabel = True ' Display data labels on the columns
+                ' Set the color of the expense column (red)
+
+                ' Refresh the chart to display the data
+                Chart2.DataBind()
+
+            End Using
+        End Using
+
+    End Sub
+
+    Private Sub IncExp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        VisualizeExpInc()
     End Sub
 
     Private Sub HighIncome_Click(sender As Object, e As EventArgs) Handles HighIncome.Click

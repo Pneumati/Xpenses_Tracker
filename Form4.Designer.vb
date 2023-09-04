@@ -26,6 +26,9 @@ Partial Class Form4
         Dim ChartArea1 As DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
         Dim Legend1 As DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
         Dim Series1 As DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
+        Dim ChartArea2 As DataVisualization.Charting.ChartArea = New DataVisualization.Charting.ChartArea()
+        Dim Legend2 As DataVisualization.Charting.Legend = New DataVisualization.Charting.Legend()
+        Dim Series2 As DataVisualization.Charting.Series = New DataVisualization.Charting.Series()
         Panel1 = New Panel()
         LinkLabel3 = New LinkLabel()
         LinkLabel6 = New LinkLabel()
@@ -62,6 +65,7 @@ Partial Class Form4
         Label13 = New Label()
         HighExp = New Label()
         Chart1 = New DataVisualization.Charting.Chart()
+        Chart2 = New DataVisualization.Charting.Chart()
         Panel1.SuspendLayout()
         CType(PictureBox9, ComponentModel.ISupportInitialize).BeginInit()
         CType(PictureBox6, ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +81,7 @@ Partial Class Form4
         Panel2.SuspendLayout()
         Panel4.SuspendLayout()
         CType(Chart1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(Chart2, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' Panel1
@@ -519,15 +524,31 @@ Partial Class Form4
         Chart1.ChartAreas.Add(ChartArea1)
         Legend1.Name = "Legend1"
         Chart1.Legends.Add(Legend1)
-        Chart1.Location = New Point(674, 43)
+        Chart1.Location = New Point(753, 43)
         Chart1.Name = "Chart1"
         Series1.ChartArea = "ChartArea1"
         Series1.Legend = "Legend1"
         Series1.Name = "Series1"
         Chart1.Series.Add(Series1)
-        Chart1.Size = New Size(684, 482)
+        Chart1.Size = New Size(528, 272)
         Chart1.TabIndex = 11
         Chart1.Text = "Chart1"
+        ' 
+        ' Chart2
+        ' 
+        ChartArea2.Name = "ChartArea1"
+        Chart2.ChartAreas.Add(ChartArea2)
+        Legend2.Name = "Legend1"
+        Chart2.Legends.Add(Legend2)
+        Chart2.Location = New Point(753, 340)
+        Chart2.Name = "Chart2"
+        Series2.ChartArea = "ChartArea1"
+        Series2.Legend = "Legend1"
+        Series2.Name = "Series1"
+        Chart2.Series.Add(Series2)
+        Chart2.Size = New Size(528, 310)
+        Chart2.TabIndex = 12
+        Chart2.Text = "Chart2"
         ' 
         ' Form4
         ' 
@@ -537,6 +558,7 @@ Partial Class Form4
         BackgroundImage = My.Resources.Resources._5968949
         BackgroundImageLayout = ImageLayout.Stretch
         ClientSize = New Size(1370, 749)
+        Controls.Add(Chart2)
         Controls.Add(Chart1)
         Controls.Add(Panel4)
         Controls.Add(Panel2)
@@ -566,6 +588,7 @@ Partial Class Form4
         Panel4.ResumeLayout(False)
         Panel4.PerformLayout()
         CType(Chart1, ComponentModel.ISupportInitialize).EndInit()
+        CType(Chart2, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
     End Sub
 
@@ -606,4 +629,5 @@ Partial Class Form4
     Friend WithEvents Chart1 As DataVisualization.Charting.Chart
     Friend WithEvents LinkLabel3 As LinkLabel
     Friend WithEvents HighExp As Label
+    Friend WithEvents Chart2 As DataVisualization.Charting.Chart
 End Class

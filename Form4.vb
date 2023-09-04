@@ -2,6 +2,7 @@
 Imports System.Collections.ObjectModel
 Imports System.Data.Common
 Imports System.Data.SqlClient
+Imports System.Windows.Forms.DataVisualization.Charting
 
 Public Class Form4
     Private Sub LinkLabel5_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel5.LinkClicked
@@ -39,7 +40,7 @@ Public Class Form4
         Me.Close()
 
     End Sub
-    Private Sub ExpDate(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub ExpDate(sender As Object, e As EventArgs)
         ExpenseDate()
     End Sub
     Private Sub ExpenseDate()
@@ -63,7 +64,7 @@ Public Class Form4
         End Using
 
     End Sub
-    Private Sub IncDate(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub IncDate(sender As Object, e As EventArgs)
         IncomeDate()
     End Sub
 
@@ -90,7 +91,7 @@ Public Class Form4
     End Sub
 
     ''Dim connection As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
-    Private Sub ExpenseAmt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub ExpenseAmt_Load(sender As Object, e As EventArgs)
         GetExpense()
     End Sub
 
@@ -112,7 +113,7 @@ Public Class Form4
             End If
         End Using
     End Sub
-    Private Sub IncomeAmt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub IncomeAmt_Load(sender As Object, e As EventArgs)
         GetIncome()
     End Sub
     Private Sub GetIncome()
@@ -144,7 +145,7 @@ Public Class Form4
         Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
     End Sub
 
-    Private Sub HighIncCat(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub HighIncCat(sender As Object, e As EventArgs)
         Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
         Dim query As String = "SELECT MAX(IncCat) AS TotalExpense FROM INCOME"
         Using connection As New SqlConnection(connectionString)
@@ -163,7 +164,7 @@ Public Class Form4
         End Using
     End Sub
 
-    Private Sub HighExpCat(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub HighExpCat(sender As Object, e As EventArgs)
         Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
         Dim query As String = "SELECT MAX(ExpCat) AS HighExpense FROM EXPENSE"
         Using connection As New SqlConnection(connectionString)
@@ -180,5 +181,57 @@ Public Class Form4
                 HighExp.Text = expTable.Rows(0)("HighExpense").ToString
             End If
         End Using
+    End Sub
+
+    Private Sub VisualizeData()
+
+        ''  Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Define your database connection string
+        Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
+
+        ' Create a connection to the database
+        Using connection As New SqlConnection(connectionString)
+            connection.Open()
+            Dim query As String = "SELECT SUM(IncAmt) AS Amount, 'Income' AS Type FROM Income " &
+                     "UNION " &
+                     "SELECT SUM(ExpAmt) AS Amount, 'Expense' AS Type FROM Expense"
+
+
+            ' Create a SqlCommand and execute the query
+            Using cmd As New SqlCommand(query, connection)
+                    ' Create a DataTable to hold the data
+                    Dim dataTable As New DataTable()
+
+                    ' Use a DataAdapter to fill the DataTable
+                    Using adapter As New SqlDataAdapter(cmd)
+                        adapter.Fill(dataTable)
+                    End Using
+
+                    ' Set the data source for your chart
+                    Chart1.DataSource = dataTable
+
+                ' Set the X and Y values for the chart
+                Chart1.Series(0).XValueMember = "Type" ' Use the alias "Type" from your SQL query
+                Chart1.Series(0).YValueMembers = "Amount"
+
+                ' Set the chart type to Pie
+                Chart1.Series(0).ChartType = SeriesChartType.Pie
+
+
+                ' Optionally, set chart properties like titles
+                Chart1.Titles.Add("Income by Category")
+
+                ' Refresh the chart to display the data
+                Chart1.DataBind()
+                End Using
+            End Using
+        End Sub
+
+    Private Sub Chart_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        VisualizeData()
+    End Sub
+
+    Private Sub HighIncome_Click(sender As Object, e As EventArgs) Handles HighIncome.Click
+
     End Sub
 End Class

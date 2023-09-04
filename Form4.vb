@@ -40,7 +40,7 @@ Public Class Form4
         Me.Close()
 
     End Sub
-    Private Sub ExpDate(sender As Object, e As EventArgs)
+    Private Sub ExpDate(sender As Object, e As EventArgs) Handles MyBase.Load
         ExpenseDate()
     End Sub
     Private Sub ExpenseDate()
@@ -64,7 +64,7 @@ Public Class Form4
         End Using
 
     End Sub
-    Private Sub IncDate(sender As Object, e As EventArgs)
+    Private Sub IncDate(sender As Object, e As EventArgs) Handles MyBase.Load
         IncomeDate()
     End Sub
 
@@ -91,7 +91,7 @@ Public Class Form4
     End Sub
 
     ''Dim connection As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
-    Private Sub ExpenseAmt_Load(sender As Object, e As EventArgs)
+    Private Sub ExpenseAmt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetExpense()
     End Sub
 
@@ -113,7 +113,7 @@ Public Class Form4
             End If
         End Using
     End Sub
-    Private Sub IncomeAmt_Load(sender As Object, e As EventArgs)
+    Private Sub IncomeAmt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GetIncome()
     End Sub
     Private Sub GetIncome()
@@ -145,7 +145,7 @@ Public Class Form4
         Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
     End Sub
 
-    Private Sub HighIncCat(sender As Object, e As EventArgs)
+    Private Sub HighIncCat(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
         Dim query As String = "SELECT MAX(IncCat) AS TotalExpense FROM INCOME"
         Using connection As New SqlConnection(connectionString)
@@ -164,7 +164,7 @@ Public Class Form4
         End Using
     End Sub
 
-    Private Sub HighExpCat(sender As Object, e As EventArgs)
+    Private Sub HighExpCat(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Pneumatica Richie\Documents\ExpenseTracker.mdf;Integrated Security=True;Connect Timeout=30"
         Dim query As String = "SELECT MAX(ExpCat) AS HighExpense FROM EXPENSE"
         Using connection As New SqlConnection(connectionString)
